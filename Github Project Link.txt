@@ -1,0 +1,3 @@
+GitHub repo Links
+https://github.com/rehmatwadii/Hydro-Hitch.git     #for HTTPS
+gh repo clone rehmatwadii/Hydro-Hitch              #for Github CLI
