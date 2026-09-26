@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-25T10:42:28.794Z",
-  "scannedTextFiles": 68,
+  "date": "2026-09-26T03:08:48.232Z",
+  "scannedTextFiles": 71,
   "findings": [],
-  "limitations": "Pattern-based working-tree scan only. Historical upstream credentials remain in Git history and require owner revocation. Test-only credentials and generated ignored local .env are intentional."
+  "limitations": "Pattern-based working-tree scan only. Published branches exclude original credential-bearing ancestry; previously exposed credentials still require owner revocation. Test-only credentials and generated ignored local .env are intentional."
 }

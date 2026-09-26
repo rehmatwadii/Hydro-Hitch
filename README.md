@@ -1,12 +1,37 @@
-> Publication note: this clean snapshot excludes historical credential-bearing commits and personal archives. See [publication details](docs/PUBLICATION.md).
+<div align="center">
 
-# Hydro-Hitch v2 Retrofit
+<img src="client/public/favicon.svg" width="72" alt="Hydro-Hitch logo" />
 
-**Modern water delivery, dispatch & tanker management.**
+# Hydro-Hitch
+
+### Water delivery. Coordinated from booking to doorstep.
+
+A modern MERN application for customers, drivers, dispatchers and administrators.
+
+![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-24-417E38?logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-5-333333?logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Replica_Set-116149?logo=mongodb&logoColor=white)
+[![Quality gates](https://github.com/rehmatwadii/Hydro-Hitch/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rehmatwadii/Hydro-Hitch/actions/workflows/ci.yml)
+
+[Quick start](#quick-start) · [Screenshots](#screenshots) · [Architecture](#architecture-and-stack) · [Deployment](docs/DEPLOYMENT.md)
+
+</div>
+
+---
 
 A retrofit of [Hydro-Hitch](https://github.com/rehmatwadii/Hydro-Hitch), preserving React, Node.js, Express and MongoDB while replacing unsafe v1 request paths and duplicated interfaces. Customers book water tankers; dispatchers coordinate resources; drivers record delivery milestones; administrators manage the service.
 
-## What works
+## Built for the whole delivery team
+
+| Workspace     | Capabilities                                                               |
+| ------------- | -------------------------------------------------------------------------- |
+| Customer      | Save addresses, review prices, book a tanker and follow delivery progress. |
+| Driver        | View assigned jobs, open navigation and record delivery milestones.        |
+| Dispatcher    | Coordinate bookings, drivers and tankers with schedule conflict checks.    |
+| Administrator | Manage people, fleet, pricing, cash records, support and reports.          |
+
+## Features
 
 - Customer registration, login, logout, password recovery, profile and multiple delivery addresses.
 - Four-stage booking, water/capacity selection, Karachi delivery windows, instructions, promo codes, price review, immutable price snapshots and idempotent confirmation.
@@ -27,7 +52,7 @@ Screenshots are generated from the seeded development application, not fabricate
 
 <details><summary>Mobile and operations views</summary>
 
-![Mobile customer workspace](docs/screenshots/customer-mobile.png)
+<img src="docs/screenshots/customer-mobile.png" width="320" alt="Customer workspace on mobile" />
 ![Operations reports](docs/screenshots/admin-reports.png)
 
 </details>
@@ -39,9 +64,11 @@ Screenshots are generated from the seeded development application, not fabricate
 - Internet access on the first install and first local-database/test run to download dependencies and the MongoDB binary.
 - Docker Engine is optional. No database, email, payment or map-provider credentials are required for the isolated local demo.
 
-## Quick start — Windows, macOS or Linux
+## Quick start
 
 ```sh
+git clone https://github.com/rehmatwadii/Hydro-Hitch.git
+cd Hydro-Hitch
 npm ci
 npm run setup
 npm run dev -- --local-db --seed
@@ -136,7 +163,6 @@ server/tests/    unit and real-database integration tests
 tests/e2e/      browser workflows and axe accessibility tests
 scripts/        local runtime and performance tooling
 docs/           audit, migration, deployment and release evidence
-docs/legacy/    original academic/media artifacts
 ```
 
 ## Roles and delivery lifecycle
@@ -178,7 +204,7 @@ Responses use `{success:true,data:...}` or `{success:false,error:{code,message,d
 
 ## Migration and original data
 
-Read [MIGRATION.md](docs/MIGRATION.md) before applying imports. New collections are separate; no migration runs automatically at startup. Completed legacy orders are imported with historical caveats, while open orders and vendor/product mappings require operator review. Legacy password hashes are not reused. The v1 Git baseline remains at `b93b561`, but it contains exposed credentials and must not be redeployed unchanged.
+Read [MIGRATION.md](docs/MIGRATION.md) before applying imports. New collections are separate; no migration runs automatically at startup. Completed legacy orders are imported with historical caveats, while open orders and vendor/product mappings require operator review. Legacy password hashes are not reused. The published history starts from a clean v2 snapshot; original credential-bearing commits are excluded. See [publication details](docs/PUBLICATION.md).
 
 ## Docker and production deployment
 
@@ -196,7 +222,7 @@ See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for the full runbook, validation status 
 
 ## Security notes
 
-The original repository committed database/SMTP credentials, JWT secrets and environment files. The working tree removes them and never contacts the original database. Their owners must revoke/rotate them and assess historical access; removing a file does not remove its Git history. No history rewrite or external credential rotation has been performed here.
+Published branches use clean v2 history that excludes original credential-bearing commits and personal archives. Local `.env`, runtime data and demo passwords stay out of Git. Previously exposed credentials still require provider-side revocation; repository cleanup cannot invalidate a password or erase third-party copies. See [SECURITY.md](SECURITY.md) and [publication details](docs/PUBLICATION.md).
 
 The new API applies strict CORS, same-site HttpOnly cookies, production Secure cookies, CSRF/origin checks, Helmet, payload caps, rate limits, input allowlists, ownership filtering, transaction-backed audit events and safe error responses. Operational exports are administrator-only and escape spreadsheet formula prefixes. No user-supplied HTML or file uploads are accepted.
 
@@ -209,7 +235,13 @@ The new API applies strict CORS, same-site HttpOnly cookies, production Secure c
 - No PWA service worker is installed; sensitive authenticated data is not cached for offline use.
 - Browser/axe checks cover critical screens and flows, not a full manual WCAG certification or cross-browser device lab. Local performance samples are not a load-capacity guarantee.
 - Dependency versions are pinned. ESLint 9 is currently selected because the React accessibility plugin does not accept ESLint 10; track its compatibility upgrade despite the clean security audit.
-- The large original video and academic artifacts remain in `docs/legacy` and Git history. History slimming requires a separate coordinated repository operation.
+- Original personal documents and large media archives are intentionally excluded from the published repository.
+
+## Verification
+
+Recorded local validation passed **26 API/unit/migration tests** and **5 browser/accessibility tests**, plus lint, formatting, production build and smoke checks. The dependency audit had zero findings at that checkpoint. These are recorded results, not a production certification or a guarantee about future dependencies.
+
+[Verification evidence](docs/verification) · [Current CI runs](https://github.com/rehmatwadii/Hydro-Hitch/actions)
 
 ## Contributing and license
 

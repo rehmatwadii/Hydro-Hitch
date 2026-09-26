@@ -35,7 +35,7 @@ const report = {
   scannedTextFiles: scanned,
   findings,
   limitations:
-    'Pattern-based working-tree scan only. Historical upstream credentials remain in Git history and require owner revocation. Test-only credentials and generated ignored local .env are intentional.',
+    'Pattern-based working-tree scan only. Published branches exclude original credential-bearing ancestry; previously exposed credentials still require owner revocation. Test-only credentials and generated ignored local .env are intentional.',
 };
 await mkdir('docs/verification', { recursive: true });
 await writeFile('docs/verification/security-scan.json', JSON.stringify(report, null, 2) + '\n');
