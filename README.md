@@ -31,6 +31,16 @@ A retrofit of [Hydro-Hitch](https://github.com/rehmatwadii/Hydro-Hitch), preserv
 | Dispatcher    | Coordinate bookings, drivers and tankers with schedule conflict checks.    |
 | Administrator | Manage people, fleet, pricing, cash records, support and reports.          |
 
+## Decisions and trade-offs
+
+The main risks in the original booking flow were trusting the browser's price and customer identifier, and allowing order updates without a controlled delivery sequence. V2 moves these decisions to the API. The regression suite checks cross-account access, stale quotes, repeated submissions and competing reservations against a real MongoDB replica set.
+
+MongoDB transactions keep the booking, resource reservation and audit event consistent. The cost is a replica-set requirement even for local development. Opaque server-side sessions make logout and account suspension enforceable immediately, at the cost of a database lookup for authentication.
+
+One React application reduces duplicated layouts and authentication code. However, the retrofit also changed the product scope: centralized fleet operations replaced independent vendor self-service. That is an outstanding migration gap. Digital payments and live GPS remain unavailable, and the documented test results do not establish production readiness.
+
+The published Git history starts from a clean snapshot because the original ancestry contained credentials. It is not evidence of an eight-week build. Future changes should use real issues, feature branches and pull requests; no dates or iterations have been manufactured. See the [publication record](docs/PUBLICATION.md) and [contribution workflow](CONTRIBUTING.md).
+
 ## Features
 
 - Customer registration, login, logout, password recovery, profile and multiple delivery addresses.

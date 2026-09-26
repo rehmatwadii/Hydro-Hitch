@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Documentation
+
+- Explain pricing, transaction, session and frontend trade-offs, including the vendor migration gap.
+- Document a feature-branch and pull-request workflow based on real issues and validation.
+- Prohibit employer/internship material and artificial commit-history reconstruction.
+
 ## 2.0.0 Retrofit — 2026-09-25
 
 ### Added
