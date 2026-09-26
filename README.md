@@ -44,6 +44,10 @@ A retrofit of [Hydro-Hitch](https://github.com/rehmatwadii/Hydro-Hitch), preserv
 
 This is a tested local release candidate, not a certification of production readiness. Read the deployment and remaining-limitations sections before putting it in service.
 
+## Before and after
+
+Explore the [visual v1-to-v2 comparison](docs/comparison/README.md): archived interfaces beside actual v2 captures, with technical changes and remaining feature gaps.
+
 ## Screenshots
 
 Screenshots are generated from the seeded development application, not fabricated UI data.
