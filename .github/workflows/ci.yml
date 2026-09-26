@@ -1,0 +1,38 @@
+name: Quality gates
+on:
+  push:
+    branches: [main, master, hydro-hitch-v2-retrofit]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MONGOMS_DISABLE_POSTINSTALL: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm test
+      - run: npm run build
+      - run: npm run test:production
+      - run: npm audit --audit-level=moderate
+      - run: npm run security:scan
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - run: docker build -t hydro-hitch:ci .
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-evidence
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7

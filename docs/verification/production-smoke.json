@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-25T10:36:13.203Z",
+  "status": "passed",
+  "checks": [
+    "Production Express serves built HTML and JavaScript",
+    "Deep links serve React entrypoint",
+    "Unknown API endpoint stays 404",
+    "Production registration sets Secure HttpOnly cookies",
+    "Production CSP restricts scripts to self"
+  ],
+  "limitations": "Local HTTP test harness; actual TLS termination, Docker runtime and external SMTP are not exercised."
+}

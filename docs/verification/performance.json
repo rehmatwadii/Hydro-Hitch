@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-25T10:42:01.627Z",
+  "environment": {
+    "node": "v24.20.0",
+    "database": "MongoDB 8.2.6 local single-node replica set",
+    "fixtures": "4 seeded historical orders, warm process; no production SLA inferred"
+  },
+  "endpoints": {
+    "/api/v2/catalog": {
+      "p50Ms": 17.79,
+      "p95Ms": 22.04,
+      "responseBytes": 687
+    },
+    "/api/v2/bookings?limit=12": {
+      "p50Ms": 36.32,
+      "p95Ms": 40.9,
+      "responseBytes": 4295
+    },
+    "/api/v2/reports/overview": {
+      "p50Ms": 42.8,
+      "p95Ms": 48.77,
+      "responseBytes": 2233
+    }
+  },
+  "customerBookingQuery": {
+    "documentsExamined": 4,
+    "keysExamined": 4,
+    "returned": 4
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "hydro-hitch-v2-retrofit",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "start": "npm run start -w server",
+    "build": "npm run build -w client",
+    "test": "node --test --test-concurrency=1 server/tests/*.test.js",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "seed": "node server/src/scripts/seed.js",
+    "migrate": "node server/src/scripts/migrate.js",
+    "setup": "node scripts/setup.mjs",
+    "bootstrap-admin": "node server/src/scripts/bootstrap-admin.js",
+    "perf": "node scripts/performance.mjs",
+    "test:production": "node scripts/smoke-production.mjs",
+    "security:scan": "node scripts/security-scan.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@eslint/js": "9.39.5",
+    "@playwright/test": "1.63.0",
+    "eslint": "9.39.5",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.12.0",
+    "mongodb-memory-server": "11.3.0",
+    "prettier": "3.9.9",
+    "supertest": "7.3.0"
+  }
+}
